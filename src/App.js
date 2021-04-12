@@ -10,12 +10,12 @@ function App() {
   useEffect(() => {
     axios.get(url)
       .then(response => {
-        setNews(response.data.totalResults)
+        setNews(response.data)
       })
     }, [url])
 
     if(news){
-      return (<div><h1>OK:: {news}</h1></div>)
+      return (<div><h1>OK:: {/*news*/}</h1></div>)
     }
 
     else {
