@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
+import { useEffect, useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello from V2
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=7a890f36b0c14c63851fa03a0529b164'
+  const [news, setNews] = useState(null)
+  
+  useEffect(() => {
+    axios.get(url)
+      .then(response => {
+        setNews(response.data.totalResults)
+      })
+    }, [url])
+
+    if(news){
+      return (<div><h1>OK:: {news}</h1></div>)
+    }
+
+    else {
+      return(<div><h1>ERROR: NO DATA</h1></div>)
+    }
+
+}
 export default App;
